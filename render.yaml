@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: company-hub-backend
+    runtime: python3
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn config.wsgi:application"
+    plan: free
+    branch: main
+    healthCheckPath: /auth/login/
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.5
+      - key: DJANGO_SETTINGS_MODULE
+        value: config.settings_production
+      - key: DEBUG
+        value: False
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        value: # Supabase 연결 정보를 수동으로 설정
+      - key: SUPABASE_URL
+        value: # Supabase URL
+      - key: SUPABASE_ANON_KEY
+        value: # Supabase anon key
+      - key: SUPABASE_SERVICE_KEY
+        value: # Supabase service key  
+      - key: SUPABASE_JWT_SECRET
+        value: # Supabase JWT secret
+    autoDeploy: false
