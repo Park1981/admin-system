@@ -26,5 +26,6 @@ def root_redirect(request):
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', root_redirect, name='root'),
-    path('auth/', include('authentication.urls')),
+    path('auth/', include('authentication.urls')), # 기존 인증 URL
+    path('api/', include('authentication.urls')), # API URL 추가
 ]

@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from rest_framework import viewsets, permissions
+from .models import Notice
+from .serializers import NoticeSerializer
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import JsonResponse
@@ -39,3 +42,13 @@ def dashboard_view(request):
     return render(request, 'authentication/dashboard.html', {
         'user': request.user
     })
+
+
+class NoticeViewSet(viewsets.ModelViewSet):
+    """
+    공지사항을 위한 API 뷰셋
+    """
+    queryset = Notice.objects.all()
+    serializer_class = NoticeSerializer
+    # 인증된 사용자는 CUD 가능, 아니면 읽기만 가능
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
