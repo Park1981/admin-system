@@ -51,6 +51,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173", 
     "https://localhost:5173",
+    "https://admin-system-psp5v1rkq-park1981s-projects.vercel.app", # Vercel 배포 주소
     # Vercel 도메인은 배포 후 추가
 ]
 
