@@ -13,5 +13,5 @@ urlpatterns = [
     path('dashboard/', views.dashboard_view, name='dashboard'),
     
     # API URL
-    path('api/', include(router.urls)),
+    path('', include(router.urls)),
 ]
